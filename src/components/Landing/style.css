@@ -1,0 +1,23 @@
+/*p {*/
+/*    margin: 0;*/
+/*}*/
+
+/*.Collection {*/
+/*    background: rgb(0, 255, 255);*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);*/
+/*}*/
+
+/*.Collection__name {*/
+/*    text-align: left;*/
+/*    padding: 10px;*/
+/*    text-transform: capitalize;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*.grid-container {*/
+/*    justify-content: start;*/
+/*    display: grid;*/
+/*    grid-template-columns: auto auto auto auto auto auto;*/
+/*    grid-gap: 5px;*/
+/*  }*/
