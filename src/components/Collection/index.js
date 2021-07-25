@@ -1,3 +1,3 @@
-import Landing from './Landing'
+import Collection from './Collection'
 
-export default Landing;
+export default Collection;

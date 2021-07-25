@@ -1,44 +1,50 @@
 import React, {useEffect, useState} from "react";
-import Card from '../Card'
 import './style.css'
-import {getCardDetails} from "../../services/card.service";
-import {getLanding} from "../../services/box.service";
-import {Route, Switch} from "react-router-dom";
-import CardDetail from "../card-detail";
-
-const [loading, setLoading] = useState(true);
-const [listCardCollection, setListCardCollection] = useState([]);
+import {getBoxDetailById, getLanding} from "../../services/box.service";
+import Collection from "../Collection";
 
 
-useEffect(() => {
-    async function fetchData() {
-        let response = await getLanding();
-        console.log('pee:', response)
-        setListCardCollection(response.rarities)
-        console.log(listCardCollection)
-        setLoading(false);
+const Landing = () => {
+    const [listCardCollection, setListCardCollection] = useState([]);
+    const [data, setData] = useState({
+        boxId: ""
+    });
+    useEffect(() => {
+        async function fetchData() {
+            let response = await getLanding();
+            setListCardCollection(response.rarities)
+        }
+
+        fetchData();
+    }, []);
+
+    console.log(listCardCollection);
+
+    const submit = async (e) => {
+        e.preventDefault()
+        const response = await getBoxDetailById(data.boxId)
+        console.log('resp', response)
+        setListCardCollection(response.rarities);
     }
 
-    fetchData();
-}, []);
+    const handle = (e) => {
+        const newData = {...data}
+        newData[e.target.id] = e.target.value
+        setData(newData)
+        console.log(newData)
+    }
 
-console.log(listCardCollection);
-
-const Collection = ({collection}) => {
-    const collectionDetails = collection.cardDetails;
-    return (
-        <div className="Collection">
-            <div className="Collection__name">{collection.cardRarity}</div>
-            <div className="grid-container">
-                {collectionDetails.map((card) => {
-                    return <Card key={card.cardId} card={card}/>;
-                })}
-            </div>
-        </div>
-    );
-}
     return (
         <div>
+            <div>
+                <form onSubmit={(e) => submit(e)} style={{ textAlign: 'center' }}>
+                    <text>BoxId:</text>
+                    <input onChange={(e) => handle(e)} id={`boxId`} value={data.boxId} placeholder={`boxId`}
+                           type={`text`}/>
+                    <button>Submit</button>
+                </form>
+            </div>
+            <br/>
             {listCardCollection.map((collection, i) => {
                 return <Collection key={i} collection={collection}/>;
             })}
@@ -47,4 +53,4 @@ const Collection = ({collection}) => {
     );
 }
 
-export default Collection;
+export default Landing;

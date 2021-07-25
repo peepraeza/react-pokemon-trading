@@ -5,17 +5,27 @@ p {
 .Card {
     background: rgb(255, 255, 255);
     border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .Card__img {
     text-align: center;
 }
 
+.pokemon__img {
+    height: auto;
+    width: 50%;
+}
+
 .Card__types {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
+}
+
+.Card__button {
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 800;
 }
 
 .Card__type {
@@ -43,10 +53,3 @@ p {
 .Card__data .title {
     font-weight: 700;
 }
-
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-gap: 20px; 
-    padding: 20px;
-  }
